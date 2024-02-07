@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    li button.delete {
+      margin-left: auto;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    button.add {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button.add:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Dashbord To-Do List</h1>
+  <div>
+    <%= message %>
+  </div>
+  <form action="/dashbord" method="post">
+    <input type="text" id="newItem" name="tododoc" placeholder="Add new item...">
+    <button class="add">Add Item</button>
+    <!-- <button type="button" class="add" onclick="addItem()">Add Item</button> -->
+  </form>
+  <ul id="list">
+
+    <% for (let index=0; index < result.length; index++) {%>
+
+        <li>
+          <%= result[index].tododoc %>
+            <form action="/delete" method="post">
+              <input type="hidden" name="index" id="" value="<%= index %>">
+              <button class="delete">Delete</button>
+            </form>
+  
+            <form action="/edit" method="post">
+              <input type="hidden" name="whatwasthere" id="" value="<%= result[index].todo %>">
+              <button class="delete">edit</button>
+            </form>
+  
+        </li>
+        <%= console.log(index); %>
+          <% }%>
+  
+  
+
+
+
+  </ul>
+
+</body>
+
+</html>
